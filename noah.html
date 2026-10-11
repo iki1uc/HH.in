@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>HH.in — atalardan atlantadan atlantis noah verbund — Konsequenz-Auffänger</title>
+<style>body{background:#08080a;color:#ddd;font:11px/1.5 monospace;padding:18px;max-width:720px;margin:0 auto}h1{color:#22d3ee}b{color:#facc15}</style></head><body>
+<h1>HH.in — Innen — RAM /9 CYLINDER — Konsequenz-Auffänger — atalardan → atlantadan → atlantis → noah verbund</h1>
+<pre>
+atalardan = Esse low — bleibt — Vorfahren haben low gehalten
+atlantadan = H2O — Jungbrunnen — Teich füllbar vorne/hinten — Wasser kam
+atlantis = Weg war Platzhalter leer — kein NEW START bei 243 — untergegangen
+noah verbund = Konsequenz-Auffänger — Arche = CACHE TurboKarte — Index.html als CACHE
+
+Regel: Alle Esses RAMs low bleiben — Normaler RAM wird 3 9 81 spätestens 243 NEW START
+Wenn Weg leer → Konsequenz-Auffänger fängt auf → bestlaufenden Stand aus HH_BEST → Arche lädt 2×2
+
+Borg 7482: 9 Repos = 1 PC — Noah hatte 1 Arche = 1 PC — 2 von jedem = 90 60 90 rundrum
+</pre>
+<canvas id="c" width="600" height="200" style="border:1px solid #222;width:100%"></canvas>
+<script>
+let C=document.getElementById('c'),X=C.getContext('2d'),t=0;
+function draw(){
+ X.clearRect(0,0,600,200);
+ // Wasser Teich füllbar
+ X.fillStyle='rgba(14,165,233,'+(0.2+Math.sin(t*0.05)*0.1)+')';X.fillRect(0,120,600,80);
+ // Atlantis untergegangen
+ X.fillStyle='#444';X.fillRect(100+Math.sin(t*0.02)*10,130+Math.sin(t*0.03)*5,80,20);X.fillStyle='#666';X.font='10px monospace';X.fillText('Atlantis — Weg leer — untergegangen',100,125);
+ // Arche Noah = TurboKarte Cache
+ X.fillStyle='#facc15';X.fillRect(350,100,120,30);X.fillStyle='#000';X.fillText('Arche = CACHE TurboKarte',355,118);
+ X.fillStyle='#22c55e';X.fillText('Konsequenz-Auffänger aktiv — 2×2 geladen — Esse low — Normal 0/243',20,20);
+ // Verbund Linie atalardan → atlantadan → atlantis → noah
+ X.strokeStyle='#22d3ee';X.beginPath();X.moveTo(20,60);X.lineTo(150,60);X.lineTo(280,60);X.lineTo(400,60);X.stroke();
+ ['atalardan','atlantadan','atlantis','noah verbund'].forEach((s,i)=>{X.fillStyle='#ddd';X.fillText(s,20+i*130,55);});
+ t++;requestAnimationFrame(draw);
+}
+draw();
+// Konsequenz-Auffänger Logik
+let fail=localStorage.getItem('HH_FAIL');
+if(fail){console.log('Konsequenz aufgefangen — atalardan atlantadan:',fail);let best=JSON.parse(localStorage.getItem('HH_BEST')||'{}');console.log('bestlaufender aus Atlantis gesichert für Noah Verbund:',best);}
+</script>
+<div style="margin-top:12px;border:1px solid #222;padding:8px">
+<b>HH.in Public — Innen — RAM — /9 CYLINDER — Jungbrunnen p81 HOLD</b><br>
+Konsequenz-Auffänger-Hh-Tor.html → index.html — Rename 67bbdea — now — best gestellt<br>
+Weg.weiser unvergessen: /3 PYRAMIDE RAM-Gate, /6 WUERFEL HDF Ziel, /9 CYLINDER Turbo Cache — /7 beste alternative<br>
+© HH.in — atalardan atlantadan atlantis noah verbund — iki1uc
+</div></body></html>
