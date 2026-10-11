@@ -1,0 +1,81 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>los.html — LOS a&b c&d — 2 Dreiecke und 4eck — HH.in</title>
+<style>body{background:#08080a;color:#ddd;font:11px monospace;padding:12px}canvas{border:1px solid #222;width:100%;height:320px}button{border:1px solid #333;background:#111;color:#ddd;padding:4px 8px;font-size:10px;margin:2px}</style></head><body>
+<h3 style="color:#22d3ee">los.html — LOS — a & b Stellung vielleicht sogar c & d Stellung — 2 Dreiecke und 4eck</h3>
+<canvas id="c"></canvas>
+<div>
+<button onclick="setPos('a')">a Stellung</button>
+<button onclick="setPos('b')">b Stellung</button>
+<button onclick="setPos('c')">c Stellung</button>
+<button onclick="setPos('d')">d Stellung</button>
+<button onclick="setPos('ab')">a&b — 1 Dreieck</button>
+<button onclick="setPos('abcd')">a&b&c&d — 2 Dreiecke + 4eck</button>
+<span style="margin-left:12px"><a href="./bund.html" style="color:#facc15">BUND → bund.html</a> — /7 bund los — LOS+Bund / Bund+Los</span>
+</div>
+<div id="info" style="margin-top:8px;color:#666"></div>
+<script>
+let C=document.getElementById('c'),X=C.getContext('2d');C.width=600;C.height=320;
+let bund={x:300,y:120};
+let pos={
+ a:{x:120,y:60}, // Dreieck 1 Ecke 1
+ b:{x:480,y:60}, // Dreieck 1 Ecke 2 — mit bund = Dreieck 1
+ c:{x:120,y:220}, // Dreieck 2 Ecke 1
+ d:{x:480,y:220} // Dreieck 2 Ecke 2 — mit bund = Dreieck 2 — a,b,c,d = 4eck
+};
+let active=['a','b']; // Start a&b = 1 Dreieck
+
+function setPos(m){
+ if(m==='a')active=['a'];
+ else if(m==='b')active=['b'];
+ else if(m==='c')active=['c'];
+ else if(m==='d')active=['d'];
+ else if(m==='ab')active=['a','b'];
+ else if(m==='abcd')active=['a','b','c','d'];
+ draw();
+}
+
+function draw(){
+ X.clearRect(0,0,600,320);
+ // Teich füllbar vorne/hinten
+ X.fillStyle='rgba(34,211,238,0.08)';X.fillRect(0,200,600,120);
+ // Bund fest Mitte
+ X.fillStyle='#facc15';X.beginPath();X.arc(bund.x,bund.y,8,0,7);X.fill();
+ X.fillStyle='#facc15';X.fillText('BUND',bund.x+10,bund.y);
+
+ // Alle Positionen zeichnen
+ ['a','b','c','d'].forEach(k=>{
+  let p=pos[k];let isActive=active.includes(k);
+  X.fillStyle=isActive?'#22d3ee':'#333';X.beginPath();X.arc(p.x,p.y,isActive?8:4,0,7);X.fill();
+  X.fillStyle=isActive?'#22d3ee':'#555';X.fillText(k+' Stellung',p.x-18,p.y-12);
+ });
+
+ // Linien
+ if(active.includes('a')&&active.includes('b')){
+  // Dreieck 1: a - b - bund
+  X.strokeStyle='rgba(250,204,21,0.6)';X.lineWidth=1;
+  X.beginPath();X.moveTo(pos.a.x,pos.a.y);X.lineTo(pos.b.x,pos.b.y);X.lineTo(bund.x,bund.y);X.closePath();X.stroke();
+  X.fillStyle='rgba(250,204,21,0.15)';X.fill();
+ }
+
+ if(active.includes('c')&&active.includes('d')){
+  // Dreieck 2: c - d - bund
+  X.strokeStyle='rgba(34,211,238,0.6)';
+  X.beginPath();X.moveTo(pos.c.x,pos.c.y);X.lineTo(pos.d.x,pos.d.y);X.lineTo(bund.x,bund.y);X.closePath();X.stroke();
+  X.fillStyle='rgba(34,211,238,0.15)';X.fill();
+ }
+
+ if(active.length===4){
+  // 4eck: a - b - d - c
+  X.strokeStyle='#22c55e';X.lineWidth=2;
+  X.beginPath();X.moveTo(pos.a.x,pos.a.y);X.lineTo(pos.b.x,pos.b.y);X.lineTo(pos.d.x,pos.d.y);X.lineTo(pos.c.x,pos.c.y);X.closePath();X.stroke();
+ }
+
+ // Info
+ let info=document.getElementById('info');
+ if(active.length===1)info.textContent='LOS '+active[0]+' Stellung — 1 Punkt — kein Dreieck — /7 bund los wartet';
+ else if(active.length===2&&active.includes('a')&&active.includes('b'))info.textContent='LOS a&b Stellung — 1 Dreieck — a-b-bund — Dreieck 1 — Pyramide /3';
+ else if(active.length===2&&active.includes('c')&&active.includes('d'))info.textContent='LOS c&d Stellung — 1 Dreieck — c-d-bund — Dreieck 2 — Würfel /6';
+ else if(active.length===4)info.textContent='LOS a&b&c&d Stellung — 2 Dreiecke (a-b-bund + c-d-bund) und 4eck (a-b-d-c) — Rang )9( — Cylinder /9 — Bund+Los = Verbund komplett — noah verbund — atalardan atlantadan atlantis';
+ else info.textContent='LOS '+active.join('&')+' Stellung — '+active.length+' Punkte';
+}
+draw();
+</script></body></html>
