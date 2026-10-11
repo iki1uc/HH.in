@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>bund.html — BUND — HH.in — /7 bund los</title>
+<style>body{background:#08080a;color:#ddd;font:11px monospace;padding:12px}canvas{border:1px solid #222;width:100%;height:240px}</style></head><body>
+<h3 style="color:#facc15">bund.html — BUND — fest — Verbund — atalardan atlantadan</h3>
+<canvas id="c"></canvas>
+<div>Bund = feste Mitte — atalardan — Esse low bleibt — Normal spätestens 243 NEW START — <a href="./los.html" style="color:#22d3ee">LOS → los.html a&b Stellung</a></div>
+<script>
+let C=document.getElementById('c'),X=C.getContext('2d');C.width=600;C.height=240;
+function draw(){
+ X.clearRect(0,0,600,240);
+ let bund={x:300,y:120};
+ // Bund fest
+ X.fillStyle='#facc15';X.beginPath();X.arc(bund.x,bund.y,10,0,7);X.fill();
+ X.fillStyle='#facc15';X.fillText('BUND — fest — Mitte — atalardan',bund.x+14,bund.y);
+ // Teich füllbar vorne/hinten
+ X.fillStyle='rgba(34,211,238,0.15)';X.fillRect(0,160,600,80);
+ X.fillStyle='#666';X.fillText('/7 bund los — Bund löst los — Esse low',20,20);
+}
+draw();
+// Bund merkt weg.weiser unvergessen
+localStorage.setItem('HH_BUND','fest — Mitte — '+Date.now());
+</script></body></html>
